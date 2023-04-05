@@ -6,9 +6,12 @@ import { SignInButton, useUser, SignOutButton } from "@clerk/nextjs";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
+  // Get the user data
   const user = useUser();
+
+  // Get all to do items from the database
+  const { data } = api.todos.getAll.useQuery();
 
   return (
     <>
@@ -20,7 +23,9 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div>
           {user.isSignedIn ? (<SignOutButton/>) : (<SignInButton />)}
-         
+        </div>
+        <div>
+          {data?.map((todo) => (<div key={todo.id}> {todo.content} </div>))}
         </div>
       </main>
     </>
