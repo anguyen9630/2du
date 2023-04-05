@@ -25,15 +25,15 @@ const Home: NextPage = () => {
               {user.isSignedIn ? (<SignOutButton/>) : (<SignInButton />)}
         </div>
         <div className="flex h-screen py-20 w-full justify-center">
-          <div className="w-full bg-neutral-800 max-w-2xl rounded-3xl drop-shadow-xl p-7">
+          <div className="w-full bg-neutral-800 max-w-2xl rounded-3xl drop-shadow-md p-7">
             <div className="flex gap-5 pb-3">
-              <input placeholder="Add a Task" className="rounded-2xl bg-neutral-700 drop-shadow-xl px-3 py-4 w-5/6"></input>
-              <button className="rounded-2xl bg-amber-400 text-neutral-950 font-bold w-1/6 drop-shadow-xl px-3 py-4">Add</button>
+              <input placeholder="Add a Task" className="rounded-2xl bg-neutral-700 drop-shadow-md px-3 py-4 w-5/6"></input>
+              <button className="rounded-2xl bg-amber-400 text-neutral-950 font-bold w-1/6 drop-shadow-md px-3 py-4">Add</button>
             </div>
             <div>
               {data?.map((todo) => (
                 <div key={todo.id} className="pb-3 pt-2">
-                  <div className="px-3 py-4 bg-neutral-600 drop-shadow-xl rounded-2xl"> 
+                  <div className="px-3 py-4 bg-neutral-600 drop-shadow-md rounded-2xl"> 
                     {todo.content} 
                   </div>
                 </div>
