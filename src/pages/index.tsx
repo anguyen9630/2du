@@ -1,5 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 import { SignInButton, useUser, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 
@@ -12,9 +14,9 @@ const headerContent = () => {
   return (
     <header className="static inline-flex w-full p-6 bg-neutral-950 shadow-md shadow-neutral-950">
       <div className="w-1/2">
-        <a href = "/" title="Home">
-          <img src="https://i.imgur.com/VQ7H1oD.png" className="w-14 h-14"/>
-        </a>
+        <Link href = "/" title="Home">
+          <Image src="https://i.imgur.com/VQ7H1oD.png" alt="Logo" className="w-14 h-14"/>
+        </Link>
       </div>
 
       <SignedIn>
