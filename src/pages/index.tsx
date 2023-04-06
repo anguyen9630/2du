@@ -15,7 +15,7 @@ const headerContent = () => {
     <header className="static inline-flex w-full p-6 bg-neutral-950 shadow-md shadow-neutral-950">
       <div className="w-1/2">
         <Link href = "/" title="Home">
-          <Image src="https://i.imgur.com/VQ7H1oD.png" alt="Logo" className="w-14 h-14"/>
+          <Image src="https://i.imgur.com/VQ7H1oD.png" alt="Logo" width={180} height={180} className="h-14 w-14"/>
         </Link>
       </div>
 
