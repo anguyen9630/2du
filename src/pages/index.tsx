@@ -6,7 +6,7 @@ import { SignInButton, useUser, SignOutButton, SignedIn, SignedOut } from "@cler
 
 
 import { api } from "~/utils/api";
-import { todoItem } from "@prisma/client";
+import type { todoItem } from "@prisma/client";
 
 
 const headerContent = () => {  
@@ -54,7 +54,7 @@ const mainContent = (data : todoItem[]) => {
               </div>
               <div className="relative overflow-auto pt-2 h-9/10 border-y-2 border-amber-400 ">
                 {data?.map((item) => (
-                    <div className="pb-2 overflow-auto">
+                    <div className="pb-2">
                       <div key={item.id} className="rounded-2xl w-11/12 font-semibold shadow-sm border-2 bg-transparent border-slate-200 shadow-slate-200 px-3 py-4">{item.content}</div>
                     </div>
                   ))
