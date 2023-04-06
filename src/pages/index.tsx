@@ -1,51 +1,84 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { SignInButton, useUser, SignOutButton, SignIn, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignInButton, useUser, SignOutButton, SignIn, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
+
 
 import { api } from "~/utils/api";
+import { todoItem } from "@prisma/client";
 
-const topBar = () => {  
+
+const headerContent = () => {  
   
   return (
-    <div className="static inline-flex w-full p-6 bg-neutral-950 shadow-md shadow-neutral-950">
-      <div className="w-1/2 bg-red-800">
-        <div>
-          <img src="https://raw.githubusercontent.com/anguyen9630/2du/dev/public/apple-touch-icon.png?token=GHSAT0AAAAAACA3QGKYE4U7N3AIVSZBXOFSZBOZLIQ" className="h-20 w-20"/>
-        </div>
+    <header className="static inline-flex w-full p-6 bg-neutral-950 shadow-md shadow-neutral-950">
+      <div className="w-1/2">
+        <a href = "/" title="Home">
+          <img src="https://i.imgur.com/VQ7H1oD.png" className="w-14 h-14"/>
+        </a>
       </div>
+
+      <SignedIn>
+        <div className="w-1/2 relative p-5" >
+          <div className="absolute right-2 top-1.5 px-4 py-2 rounded-xl font-bold border-2 border-amber-400 shadow-amber-400 shadow" >
+            <SignOutButton>Sign Out</SignOutButton>
+          </div>
+        </div>
+      </SignedIn>
       
       <SignedOut>
-        <div className="w-1/2 relative p-5">
-          <div className="absolute right-2 top-0 px-4 py-2 rounded-xl font-bold border-2 border-amber-400 shadow-amber-400 shadow">
+        <div className="w-1/2 relative p-5" >
+          <div className="absolute right-2 top-1.5 px-4 py-2 rounded-xl font-bold border-2 border-amber-400 shadow-amber-400 shadow" >
             <SignInButton>Sign In!</SignInButton>
           </div>
         </div>
       </SignedOut>
-      
-    </div>
+    </header>
+    
   );
 };
 
-const welcomePage = () => {
-  return (
-    <div className="">
-    </div>
-  )
-};
 
-const ApplicationPage = () => {
+
+const mainContent = (data : todoItem[]) => {
   return (
-    <div className="">
-      <div className="flex h-screen py-20 w-full justify-center">
-        <div className="w-full bg-neutral-800 max-w-2xl rounded-3xl shadow-inner shadow-neutral-900 p-7">
-          <div className="flex gap-5 pb-3">
-            <input placeholder="Add a Task" className="rounded-2xl bg-neutral-700 font-semibold shadow-md shadow-neutral-900 px-3 py-4 w-5/6"></input>
-            <button className="rounded-2xl bg-amber-400 text-neutral-950 font-bold w-1/6 shadow-md shadow-neutral-900 px-3 py-4">Add</button>
+    <div className="h-full min-h-full">
+      <SignedIn>
+        <div className="h-full min-h-full">
+          <div className="flex p-5 h-full min-h-full w-full justify-center">
+            <div className="w-full bg-neutral-800 max-w-2xl rounded-3xl shadow-inner shadow-neutral-900 p-7">
+              <div className="flex gap-5 pb-3">
+                <input placeholder="Add a Task" className="rounded-2xl font-semibold shadow-sm border-2 bg-transparent border-slate-200 shadow-slate-200 px-3 py-4 w-5/6"></input>
+                <button className="rounded-xl font-bold border-2 border-amber-400 shadow-amber-400 shadow-sm w-1/6 px-3 py-4">Add</button>
+              </div>
+              <div className="relative overflow-auto pt-2 h-9/10 border-y-2 border-amber-400 ">
+                {data?.map((item) => (
+                    <div className="pb-2 overflow-auto">
+                      <div key={item.id} className="rounded-2xl w-11/12 font-semibold shadow-sm border-2 bg-transparent border-slate-200 shadow-slate-200 px-3 py-4">{item.content}</div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
           </div>
-          
         </div>
-      </div>
+      </SignedIn>
+
+      <SignedOut>
+        <div className="pl-48 flex pt-20 border-b border-slate-200">
+          <div className=" max-w-2xl">
+            <p className="text-8xl pb-10 font-semibold">
+              Live organised
+            </p>
+            <p className="text-5xl pb-40">
+              A minimalist companion to help you get things done.
+            </p>
+            <p className="text-3xl pb-40">
+              Login to get started!
+            </p>
+          </div>
+        </div>
+      </SignedOut>
     </div>
   )
 };
@@ -56,7 +89,7 @@ const Home: NextPage = () => {
   const user = useUser();
 
   // Get all to do items from the database
-  const { data, isLoading } = api.users.getUserData.useQuery({userId: user.user?.id || ""});
+  const { data, isLoading } = api.todos.getAll.useQuery({userId: user.user?.id || ""});
 
   if (isLoading) return <div>Loading...</div>;
   //if (!data) return <div>Failed to load</div>;
@@ -67,11 +100,14 @@ const Home: NextPage = () => {
       <Head>
         <title>2Du</title>
         <meta name="description" content="Live Organised" />
-        <link rel="icon" href="https://raw.githubusercontent.com/anguyen9630/2du/dev/public/favicon.ico?token=GHSAT0AAAAAACA3QGKYSZKCXUASHQRVMNMGZBOZKPQ" />
+        <link rel="icon" href="https://i.imgur.com/VQ7H1oD.png" />
       </Head>
-      <main className="">
+      <main className=" h-screen min-h-screen">
         <div>
-          {topBar()}
+          {headerContent()}
+        </div>
+        <div className=" h-5/6 ">
+          {mainContent(data || [])}
         </div>
         
         
