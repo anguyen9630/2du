@@ -43,15 +43,7 @@ const ApplicationPage = () => {
             <input placeholder="Add a Task" className="rounded-2xl bg-neutral-700 font-semibold shadow-md shadow-neutral-900 px-3 py-4 w-5/6"></input>
             <button className="rounded-2xl bg-amber-400 text-neutral-950 font-bold w-1/6 shadow-md shadow-neutral-900 px-3 py-4">Add</button>
           </div>
-          <div>
-            {data?.map((todo) => (
-              <div key={todo.id} className="pb-1 pt-2">
-                <div className="flex flex-col px-3 py-4 bg-neutral-600 drop-shadow-md font-semibold shadow-md shadow-neutral-900 rounded-2xl"> 
-                  {todo.content} 
-                </div>
-              </div>
-            ))}
-          </div>
+          
         </div>
       </div>
     </div>
