@@ -11,7 +11,7 @@ const topBar = () => {
     <div className="static inline-flex w-full p-6 bg-neutral-950 shadow-md shadow-neutral-950">
       <div className="w-1/2 bg-red-800">
         <div>
-          <img src="../public/apple-touch-icon.png" className=""/>
+          <img src="https://raw.githubusercontent.com/anguyen9630/2du/dev/public/apple-touch-icon.png?token=GHSAT0AAAAAACA3QGKYE4U7N3AIVSZBXOFSZBOZLIQ" className="h-20 w-20"/>
         </div>
       </div>
       
@@ -67,7 +67,7 @@ const Home: NextPage = () => {
       <Head>
         <title>2Du</title>
         <meta name="description" content="Live Organised" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://raw.githubusercontent.com/anguyen9630/2du/dev/public/favicon.ico?token=GHSAT0AAAAAACA3QGKYSZKCXUASHQRVMNMGZBOZKPQ" />
       </Head>
       <main className="">
         <div>
