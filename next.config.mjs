@@ -20,7 +20,7 @@ const config = {
   },
   
   images: {
-    domains: ['i.imgur.com'],
+    domains: ['i.imgur.com', 'cdn-icons-png.flaticon.com'],
   },
 };
 export default config;
