@@ -52,7 +52,7 @@ export const MainContent = (proc : {data : todoItem[]}) => {
       void ctx.todos.getAllItems.invalidate();
   },});
 
-  const { mutate: deleteMutate, isLoading: deleteIsLoading } = api.todos.deleteItem.useMutation({
+  const { mutate: deleteMutate } = api.todos.deleteItem.useMutation({
     onSuccess: () => {
       void ctx.todos.getAllItems.invalidate();
     },
@@ -128,12 +128,12 @@ const Home: NextPage = () => {
   // Get the user data
   const user = useUser();
 
-  var itemList : todoItem[] = [];
+  let itemList : todoItem[] = [];
 
   // If logged in, check if user is on the database and create if not. If user is on the database then get the to do items
   if(user)
   {
-    const { data: userData, isLoading: userIsLoading } = api.users.getCurrentUser.useQuery();
+    const { data: userData } = api.users.getCurrentUser.useQuery();
     if(!userData) {
       <div>Failed to retrieve user...</div>;
     }
