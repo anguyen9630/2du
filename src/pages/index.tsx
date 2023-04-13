@@ -10,6 +10,8 @@ import { api } from "~/utils/api";
 import type { todoItem } from "@prisma/client";
 
 
+
+
 const Home: NextPage = () => {
 
   // Get the user data
@@ -36,7 +38,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Live Organised" />
         <link rel="icon" href="favicon.ico" />
       </Head>
-      <main className=" h-screen min-h-screen">
+      <main className=" h-screen w-screen">
         <div>
           <HeaderContent />
         </div>
