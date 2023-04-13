@@ -17,7 +17,7 @@ export const HeaderContent = () => {
   
         <SignedIn>
           <nav className="relative w-1/2 items-center " >
-            <div className="absolute right-0 h-14 w-14 rounded-full place-content-center items-center" >
+            <div className="absolute right-0" >
               <UserButton appearance={{
                     elements:{
                       userButtonAvatarBox : "h-14 w-14",
@@ -30,9 +30,13 @@ export const HeaderContent = () => {
         
         <SignedOut>
           <nav className="w-1/2 relative p-5" >
-            <div className="absolute right-2 top-1.5 px-4 py-2 rounded-xl font-semibold border-2 border-amber-400 hover:border-neutral-700 hover:bg-amber-400 hover:text-black active:opacity-70 duration-300" >
-              <SignInButton>Sign In!</SignInButton>
-            </div>
+            <SignInButton mode="modal">
+              <button className="absolute right-2 top-1.5 px-4 py-2 rounded-xl font-semibold border-2 border-amber-400 hover:border-neutral-700 hover:bg-amber-400 hover:text-black active:opacity-70 duration-300">
+                Sign In!
+              </button>
+            </SignInButton>
+
+            
           </nav>
         </SignedOut>
       </header>
